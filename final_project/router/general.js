@@ -6,14 +6,13 @@ const public_users = express.Router();
 
 
 public_users.post("/register", (req,res) => {
-  const username = req.body.username;
-  let user_found = users.filter(user => user.username === username)
+  const username = req.body.username; 
   
-  if(user_found.length > 0) {
+  if(isValid(username)) {
     return res.status(200).json({message: "User already exist! please use different username"});
   }
 
-  const password = req.body.password;
+  const password = req.body.password; 
   users.push({"username": username, "password": password})
   return res.status(200).json({message: `${username} registered successfully.`});
 });
@@ -26,7 +25,6 @@ public_users.get('/',function (req, res) {
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
   const isbn = req.params.isbn;
-  console.log(isbn)
   let book = books[isbn]
   return res.status(200).json({message: book});
  });
