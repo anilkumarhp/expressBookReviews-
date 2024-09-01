@@ -60,7 +60,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
   }
   books[isbn]["reviews"] = book_review;
     
-  return res.status(200).json({message: response});
+  return res.status(200).json({message: books[isbn]});
 });
 
 regd_users.delete("/auth/review/:isbn", (req, res) => {
